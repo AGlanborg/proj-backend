@@ -1,30 +1,30 @@
 database = require('../database')
 
 const create = {
-  arbetstyp: (content) => {
+  arbetstyp: async (content) => {
     db = database()
 
     const sql = `INSERT INTO arbetstyp (tillverkare, arbetstyp) VALUES ${content}`;
 
-    db.run(sql);
+    await db.run(sql);
 
     db.close()
   },
-  kopare: (content) => {
+  kopare: async (content) => {
     db = database()
 
     const sql = `INSERT INTO kopare (rst, copernicus, kontakt, name) VALUES ${content}`;
 
-    db.run(sql);
+    await db.run(sql);
 
     db.close()
   },
-  saljare: (content) => {
+  saljare: async (content) => {
     db = database()
 
     const sql = `INSERT INTO saljare (rst, copernicus, kontakt, name) VALUES ${content}`;
 
-    db.run(sql);
+    await db.run(sql);
 
     db.close()
   },

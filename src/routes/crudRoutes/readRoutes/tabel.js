@@ -3,9 +3,9 @@ const router = express.Router();
 
 const read = require('../../../modules/crud/read')
 
-router.get("/", async (req, res) => {
+router.get("/:tabel", async (req, res) => {
     try{
-        const data = await read.all("*", "main")
+        const data = await read.one(req.params.tabel, req.params.tabel + "_id")
 
         res.send({data: data})
     } catch (e) {

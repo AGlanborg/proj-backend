@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
             throw "Empty POST request"
         }
 
-        content = check.upload(req.body)
+        const content = check.upload(req.body)
 
         await create.main(content)
 

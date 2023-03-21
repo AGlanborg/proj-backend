@@ -1,5 +1,5 @@
-const validate = require('./validate')
-const build = require('./build')
+const validate = require('./manipulate/validate')
+const build = require('./manipulate/build')
 
 const check = {
   upload: (content) => {

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const create = require('../../../../modules/crud/create')
+const build = require('../../../../modules/manipulate/build')
 
 router.post("/", async (req, res) => {
     try{
@@ -9,9 +10,16 @@ router.post("/", async (req, res) => {
             throw "Empty POST request"
         }
 
-        create.kopare(req.body)
+        const content = build.sorted(req.body)
 
-        return res.send("worked")
+        await create.kopare(content)
+
+        return res.status(201).json({
+            data: {
+                title: "Success",
+                msg: "Kopare entery created"
+            }
+        });
     } catch (e) {
         return res.status(500).json({
             errors: {

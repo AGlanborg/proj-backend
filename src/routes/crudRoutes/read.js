@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const all = require('./readRoutes/all')
-//const filters = require('./readRoutes/filters')
+const tabel = require('./readRoutes/tabel')
 
-router.use("/all", all);
-//router.use("/filters", filters);
+router.use("/", tabel);
 
 module.exports = router;
