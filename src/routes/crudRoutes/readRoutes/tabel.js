@@ -5,7 +5,7 @@ const read = require('../../../modules/crud/read')
 
 router.get("/:tabel", async (req, res) => {
     try{
-        const data = await read.one(req.params.tabel, req.params.tabel + "_id")
+        const data = await read.one(req.params.tabel)
 
         res.send({data: data})
     } catch (e) {

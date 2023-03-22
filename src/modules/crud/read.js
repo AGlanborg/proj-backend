@@ -1,10 +1,8 @@
-const { CONSTRAINT } = require('sqlite3');
-
 database = require('../database')
 
 const read = {
-  one: async (from, order) => {
-    const sql = `SELECT * FROM ${from} ORDER BY ${order} DESC`;
+  one: async (from) => {
+    const sql = `SELECT * FROM ${from} ORDER BY ${from}_id DESC`;
 
     let db = database()
 

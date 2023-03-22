@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const create = require('../../../modules/crud/create')
-const check = require('../../../modules/check')
+const numbers = require('../../../modules/manipulate/assign/numbers')
 
 router.post("/", async (req, res) => {
     try{
@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
             throw "Empty POST request"
         }
 
-        const content = check.upload(req.body)
+        const content = await numbers(req.body)
 
         await create.main(content)
 

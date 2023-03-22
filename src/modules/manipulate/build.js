@@ -4,8 +4,9 @@ const build = {
         const val = Object.values(data.content)
 
         for (let i = 0; i < val.length; i += 1) {
-            let row = val[i].toUpperCase().split('", "')
+            let row = val[i].split('", "')
             const head = Object.values(data.header)
+            const keys = Object.keys(data.header)
 
             text = text + '("'
             row[0] = row[0].replace('"', '')
