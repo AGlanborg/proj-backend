@@ -29,6 +29,10 @@ async function person(data, title) {
         if (Object.keys(result).length) {
             data.content[index] += ', "' + result[`${title}_id`] + '"'
         } else if ((rst && kontakt) || (cop && kontakt)) {
+            if ((name && !rst) || (!name && !cop)) {
+                name ? name = 0 : name = 1
+            }
+
             const built = build.sorted([[`"${rst || ''}"`, `"${cop || ''}"`, `"${kontakt || ''}"`, `"${name || 0}"`]])
             let num = 1
 

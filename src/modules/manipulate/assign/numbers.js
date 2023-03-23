@@ -12,11 +12,11 @@ async function numbers(content) {
 
     data.saljare.rst = head.indexOf("RST NUMMER FÖR SÄLJARE")
     data.saljare.cop = head.indexOf("COPERNICUS NUMMER FÖR SÄLJARE")
-    data.saljare.kontakt = head.indexOf("KONTAKT PERSON FÖR SÄLJARE")
+    data.saljare.kontakt = head.indexOf("KONTAKTPERSON FÖR SÄLJARE")
     data.saljare.namn = head.indexOf("NAMN FÖR SÄLJARE")
     data.kopare.rst = head.indexOf("RST NUMMER FÖR KÖPARE")
     data.kopare.cop = head.indexOf("COPERNICUS NUMMER FÖR KÖPARE")
-    data.kopare.kontakt = head.indexOf("KONTAKT PERSON FÖR KÖPARE")
+    data.kopare.kontakt = head.indexOf("KONTAKTPERSON FÖR KÖPARE")
     data.kopare.namn = head.indexOf("NAMN FÖR KÖPARE")
     data.arbetstyp.tillverkare = head.indexOf("TILLVERKARE")
     data.arbetstyp.arbetstyp = head.indexOf("FÖRKORTNING FÖR ARBETSTYP")
