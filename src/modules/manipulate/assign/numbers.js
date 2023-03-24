@@ -3,11 +3,7 @@ const arbete = require('./arbetstyp')
 const build = require('../build')
 
 async function numbers(content) {
-    let head = content.header.toUpperCase().split('", "')
-
-    head[0] = head[0].replace('"', '')
-    head[head.length - 1] = head[head.length - 1].replace('"', '')
-
+    let head = content.header.toUpperCase().split(', ')
     let data = { header: {}, saljare: {}, kopare: {}, arbetstyp: {} }
 
     data.saljare.rst = head.indexOf("RST NUMMER FÖR SÄLJARE")

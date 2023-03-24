@@ -1,14 +1,16 @@
 const read = require('../../crud/read')
 const build = require('../build')
 const create = require('../../crud/create')
+const decimals = require('../decimals')
 
 async function person(data, title) {
     const stored = await read.one(title)
 
-    data.content.forEach((value, index) => {
-        let content = value.split('", "')
-        content[0] = content[0].replace('"', '')
-        content[content.length - 1] = content[content.length - 1].replace('"', '')
+    for(let x = 0; x < data.content.length; x += 1) {
+        let content = data.content[x]
+
+        content = decimals(content)
+        content = content.split(',')
 
         const result = {}
         const rst = content[data[title].rst]
@@ -27,28 +29,28 @@ async function person(data, title) {
         })
 
         if (Object.keys(result).length) {
-            data.content[index] += ', "' + result[`${title}_id`] + '"'
+            data.content[x] += ',' + result[`${title}_id`]
         } else if ((rst && kontakt) || (cop && kontakt)) {
             if ((name && !rst) || (!name && !cop)) {
                 name ? name = 0 : name = 1
             }
 
-            const built = build.sorted([[`"${rst || ''}"`, `"${cop || ''}"`, `"${kontakt || ''}"`, `"${name || 0}"`]])
-            let num = 1
+            const built = build.sorted([[`'${rst || ""}'`, `'${cop || ""}'`, `'${kontakt || ""}'`, `'${name || 0}'`]])
+            let num = 0
 
             stored.forEach((item) => {
                 num = Math.max(item[`${title}_id`], num)
             })
 
-            title == "saljare" ? create.saljare(built) : create.kopare(built)
+            title == 'saljare' ? await create.saljare(built) : await create.kopare(built)
 
-            data.content[index] += `, "${num + 1}"`
+            data.content[x] += `, ${num + 1}`
         } else {
-            data.content[index] += `, "null"`
+            data.content[x] += `, null`
         }
 
         data.header[title] = content.length
-    })
+    }
 
     return data
 }

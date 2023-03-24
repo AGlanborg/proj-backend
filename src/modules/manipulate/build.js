@@ -1,23 +1,25 @@
+const decimals = require('./decimals')
+
 const build = {
     unsorted: (data) => {
         let text = ''
         const val = Object.values(data.content)
 
         for (let i = 0; i < val.length; i += 1) {
-            let row = val[i].split('", "')
+            let row = val[i]
             const head = Object.values(data.header)
-            const keys = Object.keys(data.header)
 
-            text = text + '("'
-            row[0] = row[0].replace('"', '')
-            row[row.length - 1] = row[row.length - 1].replace('"', '')
+            row = decimals(row)
+
+            rowArr = row.split(',')
+            text = text + "('"
 
             for (let n = 0; n < head.length; n += 1) {
-                text = text + row[head[n]] + '", "'
+                text = text + rowArr[head[n]] + "','"
             }
 
             text = text.substring(0, text.length - 3)
-            text = text + "),\n"
+            text = text + "'),\n"
         };
 
         text = text.substring(0, text.length - 2)

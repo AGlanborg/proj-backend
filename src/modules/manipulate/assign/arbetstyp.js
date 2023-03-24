@@ -1,14 +1,16 @@
 const read = require('../../crud/read')
 const build = require('../build')
 const create = require('../../crud/create')
+const decimals = require('../decimals')
 
 async function arbete(data) {
     const stored = await read.one("arbetstyp")
 
-    data.content.forEach((value, index) => {
-        let content = value.split('", "')
-        content[0] = content[0].replace('"', '')
-        content[content.length - 1] = content[content.length - 1].replace('"', '')
+    for(let x = 0; x < data.content.length; x += 1) {
+        let content = data.content[x]
+
+        content = decimals(content)
+        content = content.split(',')
 
         const result = {}
         const tillverkare = content[data.arbetstyp.tillverkare]
@@ -24,24 +26,24 @@ async function arbete(data) {
         })
 
         if (Object.keys(result).length) {
-            data.content[index] += `, "${result.arbetstyp_id}"`
+            data.content[x] += `,${result.arbetstyp_id}`
         } else if (tillverkare && arbetstyp) {
-            const built = build.sorted([[`"${tillverkare}"`, `"${arbetstyp}"`]])
+            const built = build.sorted([[`'${tillverkare}'`, `'${arbetstyp}'`]])
             let num = 0
 
             stored.forEach((item) => {
                 num = Math.max(item[`${title}_id`], num)
             })
 
-            create.arbetstyp(built)
+            await create.arbetstyp(built)
 
-            data.content[index] += `, "${num + 1}"`
+            data.content[x] += `, ${num + 1}`
         } else {
-            data.content[index] += `, "null"`
+            data.content[x] += `, null`
         }
 
         data.header.arbetstyp = content.length
-    })
+    }
 
     return data
 }

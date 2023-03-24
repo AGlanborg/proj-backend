@@ -21,8 +21,8 @@ const read = {
   },
   all: async () => {
     const first = `SELECT * FROM main JOIN saljare ON main.saljare = saljare.saljare_id`
-    const second = `SELECT * FROM (${first}) AS f JOIN kopare ON f.kopare = kopare.kopare_id`
-    const third = `SELECT * FROM (${second}) AS s JOIN arbetstyp ON s.arbetstyp = arbetstyp.arbetstyp_id`
+    const second = `SELECT * FROM ( ${first} ) AS f JOIN kopare ON f.kopare = kopare.kopare_id`
+    const third = `SELECT * FROM ( ${second} ) AS s JOIN arbetstyp ON s.arbetstyp = arbetstyp.arbetstyp_id`
 
     const sql = `SELECT * FROM ${third} "ORDER BY main_id DESC"`;
 
