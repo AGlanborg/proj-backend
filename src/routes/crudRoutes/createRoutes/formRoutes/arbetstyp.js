@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
             throw "Empty POST request"
         }
 
-        const content = build.sorted(req.body)
+        const content = build.sorted(req.body.data)
 
         await create.arbetstyp(content)
 

@@ -28,9 +28,10 @@ const build = {
     },
     sorted: (data) => {
         let text = ""
+        const rows = data.split("\n")
 
-        for (i = 0; i < data.length; i += 1) {
-            text = text + "(" + data[i] + "),\n"
+        for (i = 0; i < rows.length; i += 1) {
+            text = text + "(" + rows[i] + "),\n"
         }
 
         text = text.substring(0, text.length - 2)
