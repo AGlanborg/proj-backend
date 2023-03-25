@@ -12,7 +12,7 @@ router.get("/:tabel", async (req, res) => {
         return res.status(500).json({
             errors: {
                 status: 500,
-                source: "/crud/read/all",
+                source: "/crud/read/",
                 title: "Error",
                 detail: e.message || e
             }
