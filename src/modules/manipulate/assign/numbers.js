@@ -40,8 +40,8 @@ async function numbers(content) {
     data.header.upfront = head.indexOf("ANTAL MÅNADER UPFRONT")
     data.header.rest = head.indexOf("ANTAL MÅNADER RESTERANDE")
     data.header.internfakt = head.indexOf("INTERNFAKT. PER PERIOD")
-    data.header.scan = head.indexOf("CHECK")
     data.header.intakt = head.indexOf("INTAKT")
+    data.header.scan = head.indexOf("CHECK")
     data.header.now = head.indexOf("FAKTURERINGSPERIOD")
     data.content = content.content
 
