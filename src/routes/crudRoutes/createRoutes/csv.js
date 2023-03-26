@@ -9,11 +9,11 @@ router.post("/", async (req, res) => {
         if (Object.keys(req.body).length == 0) {
             throw "Empty POST request"
         }
-        console.log("#1")
+
         const content = await numbers(req.body)
-        console.log("#2")
+
         await create.main(content)
-        console.log("#3")
+
         return res.status(201).json({
             data: {
                 title: "Success",

@@ -5,7 +5,7 @@ const build = require('../build')
 async function numbers(content) {
     let head = content.header.toUpperCase().split(', ')
     let data = { header: {}, saljare: {}, kopare: {}, arbetstyp: {} }
-    console.log("#1.1")
+
     data.saljare.rst = head.indexOf("RST NUMMER FÖR SÄLJARE")
     data.saljare.cop = head.indexOf("COPERNICUS NUMMER FÖR SÄLJARE")
     data.saljare.kontakt = head.indexOf("KONTAKTPERSON FÖR SÄLJARE")
@@ -44,13 +44,11 @@ async function numbers(content) {
     data.header.scan = head.indexOf("CHECK")
     data.header.now = head.indexOf("FAKTURERINGSPERIOD")
     data.content = content.content
-    console.log("#1.2")
+
     data = await person(data, "saljare")
-    console.log("#1.3")
     data = await person(data, "kopare")
-    console.log("#1.4")
     data = await arbete(data)
-    console.log("#1.5")
+
     return build.unsorted(data)
 }
 
