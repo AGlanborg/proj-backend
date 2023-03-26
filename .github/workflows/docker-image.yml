@@ -2,7 +2,7 @@ name: Docker Flow Backend
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     
 jobs:
   build:
