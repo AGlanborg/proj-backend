@@ -28,7 +28,15 @@ const build = {
     },
     sorted: (data) => {
         let text = ""
-        const rows = data.split("\n")
+        let rows = []
+
+        if (data.includes("\n")) {
+            rows = data.split("\n")
+        } else if (typeof data == "string") {
+            rows.push(data)
+        } else if (Array.isArray(data)){
+            rows = data
+        }
 
         for (i = 0; i < rows.length; i += 1) {
             text = text + "(" + rows[i] + "),\n"

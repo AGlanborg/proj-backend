@@ -4,9 +4,8 @@ const create = require('../../crud/create')
 const decimals = require('../decimals')
 
 async function person(data, title) {
-    const stored = await read.one(title)
-
     for(let x = 0; x < data.content.length; x += 1) {
+        const stored = await read.one(title)
         let content = data.content[x]
 
         content = decimals(content)

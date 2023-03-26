@@ -4,9 +4,8 @@ const create = require('../../crud/create')
 const decimals = require('../decimals')
 
 async function arbete(data) {
-    const stored = await read.one("arbetstyp")
-
     for(let x = 0; x < data.content.length; x += 1) {
+        const stored = await read.one("arbetstyp")
         let content = data.content[x]
 
         content = decimals(content)
@@ -32,7 +31,7 @@ async function arbete(data) {
             let num = 0
 
             stored.forEach((item) => {
-                num = Math.max(item[`${title}_id`], num)
+                num = Math.max(item["arbetstyp_id"], num)
             })
 
             await create.arbetstyp(built)
