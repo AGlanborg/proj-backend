@@ -7,7 +7,7 @@ const httpServer = require("http").createServer(app);
 
 const crud = require("./routes/crud");
 
-const port = process.env.port || 8081;
+const port = process.env.PORT || 8081;
 
 app.use(cors({ origin: 'http://localhost:8080' }));
 app.use(express.json());
