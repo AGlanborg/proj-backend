@@ -22,7 +22,7 @@ async function numbers(content) {
     data.header.antal = Math.max(head.indexOf("ANTAL POSTER"), head.indexOf(" ANTAL POSTER"))
     data.header.typ = Math.max(head.indexOf("TYP"), head.indexOf(" TYP"))
     data.header.leverantor = Math.max(head.indexOf("LEVERANTÖR"), head.indexOf(" LEVERANTÖR"))
-    data.header.text = Math.max(head.indexOf("TEXT"), head.indexOf(" TEXT"))
+    data.header.text = Math.max(head.indexOf("TEXT PÅ INTERNFAKTURA"), head.indexOf(" TEXT PÅ INTERNFAKTURA"))
     data.header.info = Math.max(head.indexOf("KONTAKTINFO"), head.indexOf(" KONTAKTINFO"))
     data.header.valuta = Math.max(head.indexOf("VALUTA"), head.indexOf(" VALUTA"))
     data.header.mangd = Math.max(head.indexOf("ANTAL LICENSER"), head.indexOf(" ANTAL LICENSER"))
