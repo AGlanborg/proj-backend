@@ -40,7 +40,7 @@ async function numbers(content) {
     data.header.upfront = Math.max(head.indexOf("ANTAL MÅNADER UPFRONT"), head.indexOf(" ANTAL MÅNADER UPFRONT"))
     data.header.rest = Math.max(head.indexOf("ANTAL MÅNADER RESTERANDE"), head.indexOf(" ANTAL MÅNADER RESTERANDE"))
     data.header.internfakt = Math.max(head.indexOf("INTERNFAKT. PER PERIOD"), head.indexOf(" INTERNFAKT. PER PERIOD"))
-    data.header.intakt = Math.max(head.indexOf("INTAKT"), head.indexOf(" INTAKT"))
+    data.header.intakt = Math.max(Math.max(head.indexOf("INTÄKT"), head.indexOf(" INTÄKT")), Math.max(head.indexOf("INTAKT"), head.indexOf(" INTAKT")))
     data.header.scan = Math.max(head.indexOf("CHECK"), head.indexOf(" CHECK"))
     data.header.now = Math.max(head.indexOf("FAKTURERINGSPERIOD"), head.indexOf(" FAKTURERINGSPERIOD"))
     data.content = content.content
