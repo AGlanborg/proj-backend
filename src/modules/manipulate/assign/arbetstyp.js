@@ -44,7 +44,19 @@ async function arbete(data) {
 
             data.content[x] += `,${num + 1}`
         } else {
-            data.content[x] += `,null`
+            let temp = 0
+
+            const obj = stored.find(({ tillverkare }) => tillverkare == "TEMP")
+
+            if (Object.values(obj).length) {
+                temp = obj[`arbetstyp_id`]
+            } else {
+                await create.arbetstyp("'TEMP','TEMP'")
+
+                temp = Object.values(stored).length
+            }
+
+            data.content[x] += `,${temp}`
         }
 
         indx = content.length

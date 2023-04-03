@@ -51,7 +51,19 @@ async function person(data, title) {
 
             data.content[x] += `,${num + 1}`
         } else {
-            data.content[x] += `,null`
+            let temp = 0
+
+            let obj = stored.find((item) => item.rst == "TEMP")
+
+            if (Object.values(obj).length) {
+                temp = obj[`${title}_id`]
+            } else {
+                title == 'saljare' ? await create.saljare("'TEMP','TEMP','TEMP','1'") : await create.kopare("'TEMP','TEMP','TEMP','1'")
+
+                temp = Object.values(stored).length
+            }
+
+            data.content[x] += `,${temp}`
         }
 
         indx = content.length
