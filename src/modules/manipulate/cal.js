@@ -5,14 +5,14 @@ async function cal(data) {
   let indx = 0
 
   for (let i = 0; i < data.content.length; i += 1) {
-    let content = data.content[i]
+    let text = data.content[i]
 
-    if (content.includes(";")) {
-      content.replaceAll(";", ",")
+    if (text.includes(";")) {
+      text.replaceAll(";", ",")
     }
 
-    content = decimals(content)
-    content = content.split(',')
+    text = decimals(text)
+    const content = text.split(',')
 
     let start = content[data.header.start]
     let slut = content[data.header.slut]

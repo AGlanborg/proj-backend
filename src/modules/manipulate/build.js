@@ -8,6 +8,7 @@ const build = {
         for (let i = 0; i < val.length; i += 1) {
             let row = val[i]
             const head = Object.values(data.header)
+            const titles = Object.keys(data.header)
 
             row = decimals(row)
 
@@ -15,6 +16,10 @@ const build = {
             text = text + "('"
 
             for (let n = 0; n < head.length; n += 1) {
+                if ((titles[n] == "start" || titles[n] == "slut" || titles[n] == "now") && rowArr[head[n]].includes("/")) {
+                    rowArr[head[n]].replaceAll("/", "-")
+                }
+
                 text = text + rowArr[head[n]] + "','"
             }
 

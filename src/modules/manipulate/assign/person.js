@@ -8,14 +8,14 @@ async function person(data, title) {
 
     for(let x = 0; x < data.content.length; x += 1) {
         const stored = await read.one(title)
-        let content = data.content[x]
+        let text = data.content[x]
 
-        if (content.includes(";")) {
-            content.replaceAll(";", ",")
+        if (text.includes(";")) {
+            text.replaceAll(";", ",")
         }
 
-        content = decimals(content)
-        content = content.split(',')
+        text = decimals(text)
+        const content = text.split(',')
 
         const result = {}
         const rst = content[data[title].rst]
