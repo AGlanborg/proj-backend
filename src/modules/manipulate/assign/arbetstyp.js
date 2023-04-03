@@ -4,9 +4,15 @@ const create = require('../../crud/create')
 const decimals = require('../decimals')
 
 async function arbete(data) {
+    let indx = 0
+
     for(let x = 0; x < data.content.length; x += 1) {
         const stored = await read.one("arbetstyp")
         let content = data.content[x]
+
+        if (content.includes(";")) {
+            content.replaceAll(";", ",")
+        }
 
         content = decimals(content)
         content = content.split(',')
@@ -36,13 +42,15 @@ async function arbete(data) {
 
             await create.arbetstyp(built)
 
-            data.content[x] += `, ${num + 1}`
+            data.content[x] += `,${num + 1}`
         } else {
-            data.content[x] += `, null`
+            data.content[x] += `,null`
         }
 
-        data.header.arbetstyp = content.length
+        indx = content.length
     }
+
+    data.header.arbetstyp = indx
 
     return data
 }

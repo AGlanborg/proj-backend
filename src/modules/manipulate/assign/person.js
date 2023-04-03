@@ -4,9 +4,15 @@ const create = require('../../crud/create')
 const decimals = require('../decimals')
 
 async function person(data, title) {
+    let indx = 0
+
     for(let x = 0; x < data.content.length; x += 1) {
         const stored = await read.one(title)
         let content = data.content[x]
+
+        if (content.includes(";")) {
+            content.replaceAll(";", ",")
+        }
 
         content = decimals(content)
         content = content.split(',')
@@ -43,13 +49,15 @@ async function person(data, title) {
 
             title == 'saljare' ? await create.saljare(built) : await create.kopare(built)
 
-            data.content[x] += `, ${num + 1}`
+            data.content[x] += `,${num + 1}`
         } else {
-            data.content[x] += `, null`
+            data.content[x] += `,null`
         }
 
-        data.header[title] = content.length
+        indx = content.length
     }
+
+    data.header[title] = indx
 
     return data
 }

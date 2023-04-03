@@ -1,6 +1,6 @@
 const person = require('./person')
 const arbete = require('./arbetstyp')
-const build = require('../build')
+const cal = require('../cal')
 
 async function numbers(content) {
     let head = content.header.toUpperCase().split(',')
@@ -49,7 +49,7 @@ async function numbers(content) {
     data = await person(data, "kopare")
     data = await arbete(data)
 
-    return build.unsorted(data)
+    return cal(data)
 }
 
 module.exports = numbers
