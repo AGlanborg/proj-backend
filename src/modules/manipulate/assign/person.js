@@ -51,19 +51,25 @@ async function person(data, title) {
 
             data.content[x] += `,${num + 1}`
         } else {
-            let temp = 0
+            let temp = {}
 
-            let obj = stored.find((item) => item.rst == "TEMP")
+            stored.forEach((item) => {
+                if (
+                    item.rst == "TEMP" &&
+                    item.copernicus == "TEMP" &&
+                    item.kontakt == "TEMP"
+                ) {
+                    Object.assign(temp, item)
+                }
+            })
 
-            if (Object.values(obj).length) {
-                temp = obj[`${title}_id`]
+            if (Object.values(temp).length) {
+                data.content[x] += ',' + temp[`${title}_id`]
             } else {
-                title == 'saljare' ? await create.saljare("'TEMP','TEMP','TEMP','1'") : await create.kopare("'TEMP','TEMP','TEMP','1'")
+                title == 'saljare' ? await create.saljare("('TEMP','TEMP','TEMP','1')") : await create.kopare("('TEMP','TEMP','TEMP','1')")
 
-                temp = Object.values(stored).length
+                data.content[x] += `,${Object.values(stored).length}`
             }
-
-            data.content[x] += `,${temp}`
         }
 
         indx = content.length

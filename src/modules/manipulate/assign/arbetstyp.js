@@ -44,19 +44,24 @@ async function arbete(data) {
 
             data.content[x] += `,${num + 1}`
         } else {
-            let temp = 0
+            let temp = {}
 
-            const obj = stored.find(({ tillverkare }) => tillverkare == "TEMP")
+            stored.forEach((item) => {
+                if (
+                    item.tillverkare == "TEMP" &&
+                    item.arbetstyp == "TEMP"
+                ) {
+                    Object.assign(result, item)
+                }
+            })
 
-            if (Object.values(obj).length) {
-                temp = obj[`arbetstyp_id`]
+            if (Object.values(temp).length) {
+                data.content[x] += ',' + temp["arbetstyp_id"]
             } else {
-                await create.arbetstyp("'TEMP','TEMP'")
+                await create.arbetstyp("('TEMP','TEMP')")
 
-                temp = Object.values(stored).length
+                data.content[x] += `,${Object.values(stored).length}`
             }
-
-            data.content[x] += `,${temp}`
         }
 
         indx = content.length
