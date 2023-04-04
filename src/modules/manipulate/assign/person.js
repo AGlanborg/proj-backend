@@ -35,7 +35,7 @@ async function person(data, title) {
 
         if (Object.keys(result).length) {
             data.content[x] += ',' + result[`${title}_id`]
-        } else if ((rst && kontakt) || (cop && kontakt)) {
+        } else if (rst || cop) {
             if ((name && !rst) || (!name && !cop)) {
                 name ? name = 0 : name = 1
             }
