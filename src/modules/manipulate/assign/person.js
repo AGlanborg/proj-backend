@@ -66,9 +66,15 @@ async function person(data, title) {
             if (Object.values(temp).length) {
                 data.content[x] += ',' + temp[`${title}_id`]
             } else {
+                let num = 0
+
+                stored.forEach((item) => {
+                    num = Math.max(item[`${title}_id`], num)
+                })
+
                 title == 'saljare' ? await create.saljare("('TEMP','TEMP','TEMP','1')") : await create.kopare("('TEMP','TEMP','TEMP','1')")
 
-                data.content[x] += `,${Object.values(stored).length}`
+                data.content[x] += `,${num + 1}`
             }
         }
 

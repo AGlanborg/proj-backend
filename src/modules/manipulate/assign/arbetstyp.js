@@ -6,7 +6,7 @@ const decimals = require('../decimals')
 async function arbete(data) {
     let indx = 0
 
-    for(let x = 0; x < data.content.length; x += 1) {
+    for (let x = 0; x < data.content.length; x += 1) {
         const stored = await read.one("arbetstyp")
         let text = data.content[x]
 
@@ -58,9 +58,15 @@ async function arbete(data) {
             if (Object.values(temp).length) {
                 data.content[x] += ',' + temp["arbetstyp_id"]
             } else {
+                let num = 0
+
+                stored.forEach((item) => {
+                    num = Math.max(item["arbetstyp_id"], num)
+                })
+
                 await create.arbetstyp("('TEMP','TEMP')")
 
-                data.content[x] += `,${Object.values(stored).length}`
+                data.content[x] += `,${num + 1}`
             }
         }
 
