@@ -21,7 +21,7 @@ async function person(data, title) {
         const rst = content[data[title].rst]
         const cop = content[data[title].cop]
         const kontakt = content[data[title].kontakt]
-        const name = content[data[title].name]
+        const name = title == 'saljare' ? 1 : 0
 
         stored.forEach((item) => {
             if (
@@ -36,8 +36,8 @@ async function person(data, title) {
         if (Object.keys(result).length) {
             data.content[x] += ',' + result[`${title}_id`]
         } else if (rst || cop) {
-            if ((name && !rst) || (!name && !cop)) {
-                name ? name = 0 : name = 1
+            if (content[data[title].name]) {
+                name = content[data[title].name]
             }
 
             const built = build.sorted([[`'${rst || ""}'`, `'${cop || ""}'`, `'${kontakt || ""}'`, `'${name || 0}'`]])
